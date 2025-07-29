@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO优化区 -->
+    <title>Music Track Hunt - Might Be Your Next Favorite (Spotify Playlist Project) | FREE Spotify Playlist Submission</title>
+    <meta name="description" content="一个由人工精选的、横跨风格与年代的宝藏音乐歌单，帮你发现下一个心头好。欢迎独立音乐人免费投稿推广自己的音乐。">
+    <meta name="keywords" content="音乐投稿, 歌单推荐, 独立音乐, 氛围音乐, 小众歌单, 免费音乐推广, Music Submission, Playlist Recommendation, Indie Music">
+
+    <!-- 引入Wix使用的字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;700&family=Wix+Madefor+Text:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 全局样式重置与基础设定 --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            height: 100%;
+            font-family: 'Wix Madefor Text', sans-serif;
+            background-color: #1E1E1E; /* 深色背景 */
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+        /* --- 主容器，实现两栏布局 --- */
+        .container {
+            display: flex;
+            height: 100vh; /* 占满整个视窗高度 */
+            overflow: hidden; /* 隐藏溢出部分 */
+        }
+
+        /* --- 左侧面板样式 --- */
+        .left-panel {
+            width: 35%; /* 左侧面板宽度 */
+            /* 背景图链接已设为直接的静态URL。
+              如果在预览中仍不显示，通常是本地预览环境的安全限制或网络问题所致。
+              将代码上传到GitHub Pages后，图片通常会正常加载。
+              最可靠的长期方案是：下载此图片，将其上传到您的GitHub仓库，并在此处直接引用文件名。
+              例如: background: url('your-image-name.jpg') ... 
+            */
+            background: url('https://images.unsplash.com/photo-1582775423954-703c94ef16af') center center / cover no-repeat;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        
+        /* 半透明黑色蒙版 */
+        .left-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); 
+        }
+
+        .left-content {
+            position: relative; /* 确保内容在蒙版之上 */
+            z-index: 1;
+            max-width: 450px;
+            text-align: left;
+            animation: fadeIn 1.5s ease-in-out; /* 保留的淡入动画 */
+        }
+
+        .left-content h1 {
+            font-family: 'Wix Madefor Display', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        /* ★★★ 新增：署名行样式 ★★★ */
+        .left-content .byline {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: -0.5rem; /* 向上微调，更靠近主标题 */
+            margin-bottom: 2rem;
+        }
+
+        .left-content .description {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .left-content .button {
+            display: inline-block;
+            background-color: #FF7148; /* 橙色按钮 */
+            color: #FFFFFF;
+            padding: 12px 28px;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .left-content .button:hover {
+            transform: scale(1.05);
+            background-color: #FF8A69;
+        }
+
+        /* --- 右侧面板样式 --- */
+        .right-panel {
+            width: 65%; /* 右侧面板宽度 */
+            overflow-y: auto; /* 当内容过多时，只在右侧出现滚动条 */
+            padding: 3rem;
+        }
+
+        .spotify-embed, .google-form-embed {
+            margin-bottom: 2rem;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+
+        .footer-text h2 {
+            font-size: 1.2rem;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+        }
+
+        /* --- 动画定义 --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- 响应式设计：针对手机等小屏幕 --- */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* 两栏垂直排列 */
+                height: auto;
+                overflow: visible;
+            }
+            .left-panel, .right-panel {
+                width: 100%;
+            }
+            .left-panel {
+                padding: 4rem 1.5rem;
+                text-align: center;
+            }
+            .right-panel {
+                padding: 2rem 1.5rem;
+            }
+            .left-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- ===== 左侧面板内容 ===== -->
+        <div class="left-panel">
+            <div class="left-content">
+                <h1>Might Be Your Next Favorite</h1>
+                <!-- ★★★ 已添加署名行 ★★★ -->
+                <p class="byline">Made by Music Track Hunt, a playlist project of FrontLineImprints</p>
+                
+                <p class="description">A purely hand-curated music discovery project, crossing genres, languages, and decades to share only the tracks that genuinely stand out.<br><br>一个纯粹由人工精选的音乐发现项目。跨越风格、语言和年代，只为分享那些真正能打动耳朵的宝藏歌曲。</p>
+                
+                <a href="https://open.spotify.com/playlist/527QMEuWQapUWAgxIjiQDN?si=071b40f3eb8a417b" target="_blank" class="button">Listen on Spotify</a>
+            </div>
+        </div>
+
+        <!-- ===== 右侧面板内容 ===== -->
+        <div class="right-panel">
+            
+            <!-- Spotify播放器嵌入区 -->
+            <div class="spotify-embed">
+                <!-- ★★★ 已更新Spotify播放器高度 ★★★ -->
+                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/527QMEuWQapUWAgxIjiQDN?utm_source=generator&theme=0" width="100%" height="570" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+
+            <!-- Google Forms投稿表单嵌入区 -->
+            <div class="google-form-embed">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScY3P1eFvZuvgONHrgPvtviVaVWA3NILkIAazlhKDYycyFz9g/viewform?embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">正在加载…</iframe>
+            </div>
+
+            <!-- 页脚文本区 -->
+            <div class="footer-text">
+                <h2>探索我们的音乐宇宙 | Explore Our Music Universe</h2>
+                <p>
+                    <strong>核心理念 | Core Philosophy:</strong><br>
+                    人工精选歌单 (Hand-Curated Playlists) • 发现好音乐 (Music Discovery) • 拒绝算法 (No Algorithms) • 小众宝藏 (Niche Gems)
+                </p>
+                <br>
+                <p>
+                    <strong>音乐风格 | Music Styles:</strong><br>
+                    独立流行 (Indie Pop) • 轻摇滚 (Soft Rock) • 氛围音乐 (Ambient) • 民谣 (Folk) • 嘻哈 (Hip Hop) • 电子舞曲 (EDM) 及更多 (and more): 爵士 (Jazz) / 世界音乐 (World) / 后摇 (Post-Rock) / 电影原声 (Cinematic) / 灵魂乐 (Soul)
+                </p>
+                <br>
+                <p>
+                    <strong>适用场景 | Scenes & Moods:</strong><br>
+                    当你歌荒时 (For Music Droughts) • 寻找新声音 (Finding New Sounds) • 转换心情 (Changing Moods) • 驾驶与旅行 (Driving & Travel) • 学习与工作 (Study & Work) • 深夜与独处 (Late Night & Solitude) • 放松与治愈 (Relax & Heal)
+                </p>
+                <br>
+                <hr style="border-color: #444; margin: 1rem 0;">
+                <p>© 2025 Music Track Hunt. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
