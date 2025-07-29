@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- 这是您网站的唯一页面 -->
+  <url>
+    <!-- 您的网站主页完整URL -->
+    <loc>https://frontlineimprints.github.io/MusicTrackHunt/</loc>
+    
+    <!-- 页面内容更新频率的建议 (always, hourly, daily, weekly, monthly, yearly, never) -->
+    <changefreq>monthly</changefreq>
+    
+    <!-- 此页面相对于您网站上其他页面的重要性 (0.0 到 1.0) -->
+    <priority>1.0</priority>
+  </url>
+
+</urlset>
