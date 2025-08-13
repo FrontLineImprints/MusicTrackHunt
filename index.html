@@ -5,12 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO优化区 -->
     <title>Music Track Hunt | Spotify Playlist and Free Submission</title>
     <meta name="description" content="Music Track Hunt - Might Be Your Next Favorite : A Hand-Curated Music Discovery Playlist Project made by FrontLineImprints, FREE Spotify Playlist Submission.">
     <meta name="keywords" content="Music Track Hunt, Discover Music, Spotify Playlist, Music Submission, Playlist Recommendation, FREE Spotify Playlist Submission, Get My Music on a Playlist, Submit Music to Playlist, Promote my music, Indie Music, 音乐投稿, 歌单推荐, 独立音乐, 氛围音乐, 小众歌单, 免费音乐推广">
 
-    <!-- 引入使用的字体 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@400;700&family=Wix+Madefor+Text:wght@400;500;700&display=swap" rel="stylesheet">
@@ -41,12 +39,6 @@
         /* --- 左侧面板样式 --- */
         .left-panel {
             width: 35%; /* 左侧面板宽度 */
-            /* 背景图链接已设为直接的静态URL。
-              如果在预览中仍不显示，通常是本地预览环境的安全限制或网络问题所致。
-              将代码上传到GitHub Pages后，图片通常会正常加载。
-              最可靠的长期方案是：下载此图片，将其上传到您的GitHub仓库，并在此处直接引用文件名。
-              例如: background: url('your-image-name.jpg') ... 
-            */
             background: url('https://raw.githubusercontent.com/FrontLineImprints/MusicTrackHunt/refs/heads/main/images/left.jpg') center center / cover no-repeat;
             position: relative;
             display: flex;
@@ -82,7 +74,6 @@
             line-height: 1.2;
         }
         
-        /* ★★★ 新增：署名行样式 ★★★ */
         .left-content .byline {
             font-size: 0.9rem;
             font-weight: 500;
@@ -119,9 +110,62 @@
             padding: 3rem;
         }
 
-        .spotify-embed, .google-form-embed {
+        .spotify-embed { /* 移除了对 .google-form-embed 的共有样式 */
             margin-bottom: 2rem;
         }
+
+        /* ★★★ 新增：投稿按钮区域样式 ★★★ */
+        .submission-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-top: 1rem; /* 增加与上方播放器的间距 */
+        }
+
+        .submission-section h2 {
+            font-family: 'Wix Madefor Display', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #FFFFFF;
+        }
+
+        .submission-section p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            max-width: 480px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .submission-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .submission-btn {
+            display: inline-block;
+            background-color: #333333;
+            color: #FFFFFF;
+            padding: 14px 28px;
+            text-decoration: none;
+            font-weight: 500;
+            font-family: 'Wix Madefor Text', sans-serif;
+            border-radius: 8px; /* 轻微圆角，与草图一致 */
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            border: none;
+            flex-basis: 200px;
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .submission-btn:hover {
+            transform: scale(1.05);
+            background-color: #FF7148; /* 悬浮时使用主题橙色，保持风格统一 */
+        }
+        /* ★★★ 新增样式结束 ★★★ */
+
 
         .footer-text {
             font-size: 0.9rem;
@@ -160,17 +204,20 @@
             .left-content h1 {
                 font-size: 2.5rem;
             }
+
+            /* 确保小屏幕上按钮有合适的宽度 */
+            .submission-btn {
+                flex-basis: 150px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <!-- ===== 左侧面板内容 ===== -->
         <div class="left-panel">
             <div class="left-content">
                 <h1>Might Be Your Next Favorite</h1>
-                <!-- ★★★ 已添加署名行 ★★★ -->
                 <p class="byline">Made by Music Track Hunt, a playlist project of FrontLineImprints</p>
                 
                 <p class="description">A purely hand-curated music discovery project, crossing genres, languages, and decades to share only the tracks that genuinely stand out.<br><br>一个纯粹由人工精选的音乐发现项目。跨越风格、语言和年代，只为分享那些真正能打动耳朵的宝藏歌曲。</p>
@@ -179,26 +226,44 @@
             </div>
         </div>
 
-        <!-- ===== 右侧面板内容 ===== -->
         <div class="right-panel">
             
-            <!-- Spotify播放器嵌入区 -->
             <div class="spotify-embed">
-                <!-- ★★★ 已更新Spotify播放器高度 ★★★ -->
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/527QMEuWQapUWAgxIjiQDN?utm_source=generator&theme=0" width="100%" height="650" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
 
-            <!-- Google Forms投稿表单嵌入区 -->
-            <div class="google-form-embed">
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScY3P1eFvZuvgONHrgPvtviVaVWA3NILkIAazlhKDYycyFz9g/viewform?embedded=true" width="100%" height="1200" frameborder="0" marginheight="0" marginwidth="0">正在加载…</iframe>
+            <div class="submission-section">
+                <h2>Submit Your Song</h2>
+                <p>请选择你偏好的投稿方式<br>Please choose the way you prefer from the following options</p>
+                <div class="submission-buttons">
+                    <a href="https://pitchplaylists.com/submit-public-page/689c2cdd6e16233e179d431b" target="_blank" class="submission-btn">PitchPlaylists</a>
+                    <a href="https://dailyplaylists.com/playlists/527QMEuWQapUWAgxIjiQDN" target="_blank" class="submission-btn">Daily Playlists</a>
+                    <a href="#comming soon" target="_blank" class="submission-btn">SubmitHub</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScY3P1eFvZuvgONHrgPvtviVaVWA3NILkIAazlhKDYycyFz9g/viewform" target="_blank" class="submission-btn">Google Form</a>
+                </div>
             </div>
 
-            <!-- 页脚文本区 -->
-            <div class="footer-text">
+           <div class="footer-text">
                 <h2>探索我们的音乐宇宙 | Explore Our Music Universe</h2>
+                
+                <p>
+                    <strong>关于我们 | About Us:</strong><br>
+                    <p><strong>MusicTrackHunt</strong>  is currently just a personal project, born from our passion for discovering and sharing hidden musical gems. We believe good music should never be buried. Every song is personally listened to and carefully handpicked by us, with the hope of bringing you that next “favorite” surprise moment. I'm not a die-hard follower of any single genre, so I keep an open mind toward different styles and languages. I respect all original artists who create with care, and I believe that great songs in less-common languages deserve to be heard as well. What matters most to me is whether the lyrics and arrangement of a song can instantly capture my attention.</p>
+<br>
+
+<p><strong>For artists:</strong> This playlist is an excellent platform to promote your music and reach listeners who are equally passionate about discovering great songs across different styles. You don’t need to spend too much time hesitating or worrying about whether your genre or language fits—what you should care about is the quality of your music. I also won’t dismiss AI-generated music outright, as I've tried out Suno before., and I know that creating a high-quality song with it still takes a great deal of time. If your music is made with Suno, please make sure you've fine-tuned it with care so it meets the basic standards of “good music.”</p>
+<br>
+
+<p><em>Currently, the playlist will be capped at no more than 200 songs to ensure that no one’s music gets lost in a massive list of thousands of tracks without a fair chance to be heard.</em></p>
+<br>
+
+<p><strong>Please note: </strong> Our preferences and interpretation of a song are inevitably influenced by our personal, subjective feelings. Therefore, if your music is not selected by us, it does not mean we are denying its value. You are welcome to submit it to other playlists, and I believe you will find listeners who appreciate it.</p>
+               
+                </p>
+                <br>
                 <p>
                     <strong>核心理念 | Core Philosophy:</strong><br>
-                    人工精选歌单 (Hand-Curated Playlists) • 发现好音乐 (Music Discovery) • 拒绝算法 (No Algorithms) • 小众宝藏 (Niche Gems)
+                    人工精选歌单 (Hand-Curated Playlists) • 发现好音乐 (Music Discovery) • 拒绝算法 (No Algorithms) • 小众宝藏 (Niche Gems) • 无曲风限制 (No genre restrictions) • 无语种限制 (No language restrictions) • 更在意好音乐 (Quality music matters more)
                 </p>
                 <br>
                 <p>
