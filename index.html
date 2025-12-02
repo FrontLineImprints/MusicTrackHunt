@@ -110,15 +110,15 @@
             padding: 3rem;
         }
 
-        .spotify-embed { /* 移除了对 .google-form-embed 的共有样式 */
+        .spotify-embed {
             margin-bottom: 2rem;
         }
 
-        /* ★★★ 新增：投稿按钮区域样式 ★★★ */
+        /* --- 投稿按钮区域样式 --- */
         .submission-section {
             text-align: center;
             margin-bottom: 3rem;
-            padding-top: 1rem; /* 增加与上方播放器的间距 */
+            padding-top: 1rem;
         }
 
         .submission-section h2 {
@@ -152,63 +152,168 @@
             text-decoration: none;
             font-weight: 500;
             font-family: 'Wix Madefor Text', sans-serif;
-            border-radius: 8px; /* 轻微圆角，与草图一致 */
+            border-radius: 8px;
             transition: transform 0.2s ease, background-color 0.2s ease;
             border: none;
             flex-basis: 200px;
             flex-grow: 1;
             text-align: center;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         .submission-btn:hover {
             transform: scale(1.05);
-            background-color: #FF7148; /* 悬浮时使用主题橙色，保持风格统一 */
+            background-color: #FF7148;
         }
-        /* ★★★ 新增样式结束 ★★★ */
 
+        /* ★★★ START: 弹窗 (Modal) 样式 ★★★ */
+        .modal {
+            display: none; /* 默认隐藏 */
+            position: fixed; 
+            z-index: 9999; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.85);
+            backdrop-filter: blur(4px);
+            animation: fadeInModal 0.3s;
+        }
 
-        .footer-text {
+        .modal-content {
+            background-color: #252525;
+            margin: 5% auto;
+            padding: 40px;
+            border: 1px solid #444;
+            width: 90%; 
+            max-width: 700px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            text-align: left;
+        }
+
+        /* 弹窗头部工具栏 (包含关闭按钮和语言切换) */
+        .modal-header-tools {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px; /* 语言切换和关闭按钮之间的距离 */
+        }
+
+        /* 关闭按钮 X */
+        .close-modal {
+            color: #aaa;
+            font-size: 32px;
+            font-weight: bold;
+            transition: color 0.2s;
+            line-height: 1;
+            cursor: pointer;
+        }
+        .close-modal:hover { color: #FF7148; }
+
+        /* 语言切换按钮 */
+        .lang-switch-btn {
+            color: #aaa;
             font-size: 0.9rem;
-            color: #a0a0a0;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid #555;
+            padding: 4px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
+            user-select: none; /* 防止双击选中文本 */
+        }
+        .lang-switch-btn:hover {
+            border-color: #FF7148;
+            color: #fff;
+        }
+        .lang-active {
+            color: #FF7148; /* 当前选中的语言颜色 */
         }
 
-        .footer-text h2 {
-            font-size: 1.2rem;
-            color: #FFFFFF;
-            margin-bottom: 1rem;
+        /* 弹窗标题 */
+        .modal-title {
+            font-family: 'Wix Madefor Display', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: #ffffff;
+            border-bottom: 2px solid #FF7148;
+            display: inline-block;
+            padding-bottom: 10px;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 10px; /* 避免挡住右上角按钮 */
         }
 
-        /* --- 动画定义 --- */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* 弹窗正文排版 */
+        .modal-section { margin-bottom: 2rem; }
+
+        .modal-section h3 {
+            font-family: 'Wix Madefor Display', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #FF7148;
+            margin-bottom: 0.8rem;
         }
 
-        /* --- 响应式设计：针对手机等小屏幕 --- */
+        .modal-section p {
+            font-family: 'Wix Madefor Text', sans-serif;
+            font-size: 1rem;
+            color: #ddd;
+            line-height: 1.7;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 列表样式 (a, b, c) */
+        .modal-list {
+            list-style-type: none; /* 移除默认圆点 */
+            padding-left: 0;
+        }
+        .modal-list li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 0.5rem;
+            color: #ddd;
+            font-size: 1rem;
+        }
+        /* 增加悬挂缩进效果，让a. b.对齐 */
+        .modal-list li strong {
+            margin-right: 5px;
+            color: #fff;
+        }
+
+        /* 注解文字样式 (小号, 淡色) */
+        .note-text {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 2rem;
+            line-height: 1.5;
+            border-top: 1px solid #444; /* 顶部分隔线 */
+            padding-top: 1rem;
+        }
+
+        @keyframes fadeInModal {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* 响应式调整 */
         @media (max-width: 768px) {
-            .container {
-                flex-direction: column; /* 两栏垂直排列 */
-                height: auto;
-                overflow: visible;
-            }
-            .left-panel, .right-panel {
-                width: 100%;
-            }
-            .left-panel {
-                padding: 4rem 1.5rem;
-                text-align: center;
-            }
-            .right-panel {
-                padding: 2rem 1.5rem;
-            }
-            .left-content h1 {
-                font-size: 2.5rem;
-            }
-
-            /* 确保小屏幕上按钮有合适的宽度 */
-            .submission-btn {
-                flex-basis: 150px;
-            }
+            .container { flex-direction: column; height: auto; overflow: visible; }
+            .left-panel, .right-panel { width: 100%; }
+            .left-panel { padding: 4rem 1.5rem; text-align: center; }
+            .right-panel { padding: 2rem 1.5rem; }
+            .modal-content { margin: 15% auto; width: 95%; padding: 25px; }
+            .modal-title { font-size: 1.5rem; width: 100%; border-bottom: 1px solid #FF7148; }
+            .modal-header-tools { top: 15px; right: 15px; gap: 10px; }
         }
     </style>
 </head>
@@ -219,15 +324,12 @@
             <div class="left-content">
                 <h1>Might Be Your Next Favorite</h1>
                 <p class="byline">Made by Music Track Hunt, a playlist project of FrontLineImprints</p>
-                
                 <p class="description">A purely hand-curated music discovery project, crossing genres, languages, and decades to share only the tracks that genuinely stand out.<br><br>一个纯粹由人工精选的音乐发现项目。跨越风格、语言和年代，只为分享那些真正能打动耳朵的宝藏歌曲。</p>
-                
                 <a href="https://open.spotify.com/playlist/527QMEuWQapUWAgxIjiQDN?si=071b40f3eb8a417b" target="_blank" class="button">Listen on Spotify</a>
             </div>
         </div>
 
         <div class="right-panel">
-            
             <div class="spotify-embed">
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/527QMEuWQapUWAgxIjiQDN?utm_source=generator&theme=0" width="100%" height="650" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
@@ -239,7 +341,7 @@
                     <a href="https://pitchplaylists.com/submit-public-page/689c2cdd6e16233e179d431b" target="_blank" class="submission-btn">PitchPlaylists</a>
                     <a href="https://dailyplaylists.com/playlists/527QMEuWQapUWAgxIjiQDN" target="_blank" class="submission-btn">Daily Playlists</a>
                     <a href="#comming soon" target="_blank" class="submission-btn">SubmitHub</a>
-                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScY3P1eFvZuvgONHrgPvtviVaVWA3NILkIAazlhKDYycyFz9g/viewform" target="_blank" class="submission-btn">Google Form</a>
+                    <button id="openModalBtn" class="submission-btn">Learn How This Playlist Works</button>
                 </div>
             </div>
 
@@ -249,15 +351,12 @@
                 <p>
                     <strong>关于我们 | About Us:</strong><br>
                     <p><strong>MusicTrackHunt</strong>  is currently just a personal project, born from our passion for discovering and sharing hidden musical gems. We believe good music should never be buried. Every song is personally listened to and carefully handpicked by us, with the hope of bringing you that next “favorite” surprise moment. I'm not a die-hard follower of any single genre, so I keep an open mind toward different styles and languages. I respect all original artists who create with care, and I believe that great songs in less-common languages deserve to be heard as well. What matters most to me is whether the lyrics and arrangement of a song can instantly capture my attention.</p>
-<br>
-
-<p><strong>For artists:</strong> This playlist is an excellent platform to promote your music and reach listeners who are equally passionate about discovering great songs across different styles. You don’t need to spend too much time hesitating or worrying about whether your genre or language fits—what you should care about is the quality of your music. I also won’t dismiss AI-generated music outright, as I've tried out Suno before., and I know that creating a high-quality song with it still takes a great deal of time. If your music is made with Suno, please make sure you've fine-tuned it with care so it meets the basic standards of “good music.”</p>
-<br>
-
-<p><em>Currently, the playlist will be capped at no more than 200 songs to ensure that no one’s music gets lost in a massive list of thousands of tracks without a fair chance to be heard.</em></p>
-<br>
-
-<p><strong>Please note: </strong> Our preferences and interpretation of a song are inevitably influenced by our personal, subjective feelings. Therefore, if your music is not selected by us, it does not mean we are denying its value. You are welcome to submit it to other playlists, and I believe you will find listeners who appreciate it.</p>
+                    <br>
+                    <p><strong>For artists:</strong> This playlist is an excellent platform to promote your music and reach listeners who are equally passionate about discovering great songs across different styles. You don’t need to spend too much time hesitating or worrying about whether your genre or language fits—what you should care about is the quality of your music. I also won’t dismiss AI-generated music outright, as I've tried out Suno before., and I know that creating a high-quality song with it still takes a great deal of time. If your music is made with Suno, please make sure you've fine-tuned it with care so it meets the basic standards of “good music.”</p>
+                    <br>
+                    <p><em>Currently, the playlist will be capped at no more than 200 songs to ensure that no one’s music gets lost in a massive list of thousands of tracks without a fair chance to be heard.</em></p>
+                    <br>
+                    <p><strong>Please note: </strong> Our preferences and interpretation of a song are inevitably influenced by our personal, subjective feelings. Therefore, if your music is not selected by us, it does not mean we are denying its value. You are welcome to submit it to other playlists, and I believe you will find listeners who appreciate it.</p>
                
                 </p>
                 <br>
@@ -281,6 +380,122 @@
             </div>
         </div>
     </div>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header-tools">
+                <div id="langSwitch" class="lang-switch-btn">
+                    <span id="labelEn" class="lang-active">EN</span> / <span id="labelZh">中文</span>
+                </div>
+                <span class="close-modal">×</span>
+            </div>
+            
+            <h2 class="modal-title">Learn How This Playlist Works</h2>
+            
+            <div id="contentEn">
+                <div class="modal-section">
+                    <h3>1. What kind of music submissions do we accept?</h3>
+                    <ul class="modal-list">
+                        <li><strong>a.</strong> Submissions must include lyrics and cannot be instrumental-only tracks. They also shouldn't be excessively short, such as lasting only around 1 minute.</li>
+                        <li><strong>b.</strong> We place no restrictions on musical genres or singing languages. We believe all good music deserves to be heard and loved. Our personal listening habits span a wide range of genres, and we don't only favor one particular genre.</li>
+                        <li><strong>c.</strong> We do not reject AI-generated music that has been meticulously fine-tuned with thoughtful lyrics. However, please understand that we can identify and will not accept lazy music pieces generated using Suno's one-click tools.</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3>2. What are your criteria for accepting music?</h3>
+                    <p>As its name suggests, this playlist aims to help listeners discover their next favorite track. We also strive to amplify the music of many independent artists. Therefore, we maintain moderately strict standards for submissions. If your work sounds genuinely good, we may accept it.</p>
+                    <ul class="modal-list">
+                        <li><strong>a.</strong> All accepted tracks are guaranteed to remain in the playlist for at least 14 days.</li>
+                        <li><strong>b.</strong> Each month, we conduct a review of the playlist's music. At this time, we apply stricter criteria to evaluate songs. Only those that genuinely impressed us and drew us back for repeated listens will ultimately receive extended placement.</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3>3. How are songs ordered within the playlist?</h3>
+                    <p>By default, songs are sorted chronologically from oldest to newest based on acceptance times. However, if a newly accepted track is deemed exceptionally worthy of wider exposure, we may move it to a higher position in the playlist. We may also periodically adjust the track order.</p>
+                </div>
+
+                <p class="note-text">* Music evaluation involves subjective judgment. MusicTrackHunt reserves the final right to determine whether your music is accepted, its retention period in playlists, and its position within playlists. We do not provide individual explanations for related operations.</p>
+            </div>
+
+            <div id="contentZh" style="display: none;">
+                <div class="modal-section">
+                    <h3>1. 我們接受哪些類型的音樂投稿？</h3>
+                    <ul class="modal-list">
+                        <li><strong>a.</strong> 投稿作品必須包含歌詞，不可僅為純器樂曲。作品長度亦不宜過短，例如僅約1分鐘左右。</li>
+                        <li><strong>b.</strong> 我們對音樂類型或演唱語言不設限制。我們相信所有優質音樂都值得被聆聽與喜愛。我們的個人聆聽習慣涵蓋廣泛類型，並非偏好特定流派。</li>
+                        <li><strong>c.</strong> 經精心調整且配有深思熟慮歌詞的人工智慧生成音樂，我們不會拒絕。但請理解，我們能辨識並拒絕使用Suno一鍵生成工具製作的敷衍作品。</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3>2. 音樂收錄標準為何？</h3>
+                    <p>正如其名，此播放清單旨在協助聽眾發掘下一首心頭好，同時致力推廣眾多獨立音樂人的作品。因此我們對投稿維持適度嚴謹的標準。若作品具備真實音樂價值，我們可能予以收錄。</p>
+                    <ul class="modal-list">
+                        <li><strong>a.</strong> 所有入選曲目保證在播放清單中保留至少14天。</li>
+                        <li><strong>b.</strong> 每月我們將進行播放清單音樂審查。此時將採用更嚴格標準評估歌曲，唯有真正打動我們並令人反覆聆聽的作品，最終才能獲得延長收錄資格。</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3>3. 播放清單內歌曲如何排序？</h3>
+                    <p>預設依收錄時間由舊至新排序。但若新收錄曲目具高度推廣價值，我們可能將其調至清單前列位置，亦會定期調整曲目順序。</li>
+                </div>
+
+                <p class="note-text">* 音樂評選涉及主觀判斷。MusicTrackHunt 保留最終決定權，包括歌曲是否獲選、在播放清單的保留期限及排序位置。相關操作恕不提供個別說明。</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // 获取元素
+        var modal = document.getElementById("infoModal");
+        var btn = document.getElementById("openModalBtn");
+        var span = document.getElementsByClassName("close-modal")[0];
+
+        // 语言切换相关元素
+        var langSwitch = document.getElementById("langSwitch");
+        var contentEn = document.getElementById("contentEn");
+        var contentZh = document.getElementById("contentZh");
+        var labelEn = document.getElementById("labelEn");
+        var labelZh = document.getElementById("labelZh");
+        
+        // 点击按钮打开弹窗
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        // 点击 X 关闭弹窗
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // 点击弹窗外部也可以关闭
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // 语言切换逻辑
+        langSwitch.onclick = function() {
+            if (contentEn.style.display !== "none") {
+                // 当前是英文，切换到中文
+                contentEn.style.display = "none";
+                contentZh.style.display = "block";
+                labelEn.classList.remove("lang-active");
+                labelZh.classList.add("lang-active");
+            } else {
+                // 当前是中文，切换到英文
+                contentZh.style.display = "none";
+                contentEn.style.display = "block";
+                labelZh.classList.remove("lang-active");
+                labelEn.classList.add("lang-active");
+            }
+        }
+    </script>
 
 </body>
 </html>
