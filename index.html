@@ -176,6 +176,46 @@
             transform: scale(1.05);
             background-color: #FF7148;
         }
+        /* --- ↓↓↓ 新增：DistroKid 按钮专用样式 ↓↓↓ --- */
+        
+        /* 调整按钮内部布局，使其支持 文字+Tag 的横向排列 */
+        .dk-btn-layout {
+            display: inline-flex !important; /* 强制启用 Flex 布局 */
+            align-items: center;
+            justify-content: center;
+            gap: 8px; /* 文字和 Tag 之间的间距 */
+            padding: 12px 15px !important; /* 稍微减小左右内边距，防止按钮过宽 */
+            font-size: 0.95rem !important; /* 稍微缩小一点点字号以适应单行 */
+            white-space: nowrap; /* 尽量保持在一行显示 */
+        }
+
+        /* SAVE 7% 的标签样式 */
+        .save-tag {
+            background-color: #FF7148; /* 您的主题橙色 */
+            color: #fff;
+            font-size: 0.75rem; /* 字号更小，显精致 */
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 4px; /* 标签的小圆角 */
+            text-transform: uppercase;
+            line-height: 1;
+            letter-spacing: 0.5px;
+        }
+
+        /* 鼠标悬停在按钮上时，Tag 变白，字变橙（反色效果，可选，增加互动感） */
+        .dk-btn-layout:hover .save-tag {
+            background-color: #fff;
+            color: #FF7148;
+        }
+        
+        /* 手机端适配：如果屏幕太小，允许折行，保持美观 */
+        @media (max-width: 400px) {
+            .dk-btn-layout {
+                flex-wrap: wrap; 
+                line-height: 1.3;
+                padding: 10px !important;
+            }
+        }
 
         /* ★★★ START: 弹窗 (Modal) 样式 ★★★ */
         .modal {
@@ -350,7 +390,8 @@
                 <div class="submission-buttons">
                     <a href="https://pitchplaylists.com/submit-public-page/689c2cdd6e16233e179d431b" target="_blank" class="submission-btn">PitchPlaylists</a>
                     <a href="https://dailyplaylists.com/playlists/527QMEuWQapUWAgxIjiQDN" target="_blank" class="submission-btn">Daily Playlists</a>
-                    <a href="#comming soon" target="_blank" class="submission-btn">SubmitHub</a>
+                    <a href="https://distrokid.com/vip/seven/9768361" target="_blank" class="submission-btn dk-btn-layout">
+                        Distribute music with Distrokid <span class="save-tag">SAVE 7%</span>
                     <button id="openModalBtn" class="submission-btn">Learn How This Playlist Works</button>
                 </div>
             </div>
