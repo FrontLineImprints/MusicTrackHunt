@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CLNPSY8YY2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-CLNPSY8YY2');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CLNPSY8YY2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    
+      gtag('config', 'G-CLNPSY8YY2');
+    </script>
 
     <meta name="google-site-verification" content="KFr-O51QiHtGUXFYM3LlPjBHMM0sMDM5ntQCgZ06T4c" />
     <meta charset="UTF-8">
@@ -176,45 +175,39 @@
             transform: scale(1.05);
             background-color: #FF7148;
         }
-        /* --- ↓↓↓ 新增：DistroKid 按钮专用样式 ↓↓↓ --- */
-        
-        /* 调整按钮内部布局，使其支持 文字+Tag 的横向排列 */
+
+        /* ★★★ DistroKid 按钮专用样式 (修复版) ★★★ */
         .dk-btn-layout {
-            display: inline-flex !important; /* 强制启用 Flex 布局 */
+            display: inline-flex !important; /* 强制使用 Flex 布局 */
             align-items: center;
             justify-content: center;
             gap: 8px; /* 文字和 Tag 之间的间距 */
-            padding: 12px 15px !important; /* 稍微减小左右内边距，防止按钮过宽 */
+            padding: 14px 20px !important; /* 调整内边距，确保与其他按钮高度一致 */
             font-size: 0.95rem !important; /* 稍微缩小一点点字号以适应单行 */
             white-space: nowrap; /* 尽量保持在一行显示 */
+            width: auto; /* 允许宽度自适应内容 */
+            flex-grow: 2; /* 如果空间不够，优先让这个按钮占据更多宽度 */
         }
 
-        /* SAVE 7% 的标签样式 */
+        /* 醒目的折扣标签 */
         .save-tag {
-            background-color: #FF7148; /* 您的主题橙色 */
+            background-color: #FF7148; /* 主题橙色 */
             color: #fff;
-            font-size: 0.75rem; /* 字号更小，显精致 */
+            font-size: 0.75rem;
             font-weight: 800;
             padding: 2px 6px;
-            border-radius: 4px; /* 标签的小圆角 */
+            border-radius: 4px;
             text-transform: uppercase;
             line-height: 1;
             letter-spacing: 0.5px;
+            position: relative;
+            top: -1px; /* 视觉微调 */
         }
 
-        /* 鼠标悬停在按钮上时，Tag 变白，字变橙（反色效果，可选，增加互动感） */
+        /* 悬停效果：标签反色 */
         .dk-btn-layout:hover .save-tag {
             background-color: #fff;
             color: #FF7148;
-        }
-        
-        /* 手机端适配：如果屏幕太小，允许折行，保持美观 */
-        @media (max-width: 400px) {
-            .dk-btn-layout {
-                flex-wrap: wrap; 
-                line-height: 1.3;
-                padding: 10px !important;
-            }
         }
 
         /* ★★★ START: 弹窗 (Modal) 样式 ★★★ */
@@ -245,17 +238,15 @@
             text-align: left;
         }
 
-        /* 弹窗头部工具栏 (包含关闭按钮和语言切换) */
         .modal-header-tools {
             position: absolute;
             top: 20px;
             right: 25px;
             display: flex;
             align-items: center;
-            gap: 20px; /* 语言切换和关闭按钮之间的距离 */
+            gap: 20px; 
         }
 
-        /* 关闭按钮 X */
         .close-modal {
             color: #aaa;
             font-size: 32px;
@@ -266,7 +257,6 @@
         }
         .close-modal:hover { color: #FF7148; }
 
-        /* 语言切换按钮 */
         .lang-switch-btn {
             color: #aaa;
             font-size: 0.9rem;
@@ -276,17 +266,16 @@
             padding: 4px 10px;
             border-radius: 4px;
             transition: all 0.2s;
-            user-select: none; /* 防止双击选中文本 */
+            user-select: none;
         }
         .lang-switch-btn:hover {
             border-color: #FF7148;
             color: #fff;
         }
         .lang-active {
-            color: #FF7148; /* 当前选中的语言颜色 */
+            color: #FF7148; 
         }
 
-        /* 弹窗标题 */
         .modal-title {
             font-family: 'Wix Madefor Display', sans-serif;
             font-size: 2rem;
@@ -300,10 +289,9 @@
             position: relative;
             left: 50%;
             transform: translateX(-50%);
-            margin-top: 10px; /* 避免挡住右上角按钮 */
+            margin-top: 10px; 
         }
 
-        /* 弹窗正文排版 */
         .modal-section { margin-bottom: 2rem; }
 
         .modal-section h3 {
@@ -322,9 +310,8 @@
             margin-bottom: 0.5rem;
         }
 
-        /* 列表样式 (a, b, c) */
         .modal-list {
-            list-style-type: none; /* 移除默认圆点 */
+            list-style-type: none;
             padding-left: 0;
         }
         .modal-list li {
@@ -334,25 +321,39 @@
             color: #ddd;
             font-size: 1rem;
         }
-        /* 增加悬挂缩进效果，让a. b.对齐 */
         .modal-list li strong {
             margin-right: 5px;
             color: #fff;
         }
 
-        /* 注解文字样式 (小号, 淡色) */
         .note-text {
             font-size: 0.85rem;
             color: #888;
             margin-top: 2rem;
             line-height: 1.5;
-            border-top: 1px solid #444; /* 顶部分隔线 */
+            border-top: 1px solid #444; 
             padding-top: 1rem;
         }
 
         @keyframes fadeInModal {
             from {opacity: 0;}
             to {opacity: 1;}
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            color: #a0a0a0;
+        }
+
+        .footer-text h2 {
+            font-size: 1.2rem;
+            color: #FFFFFF;
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* 响应式调整 */
@@ -364,6 +365,13 @@
             .modal-content { margin: 15% auto; width: 95%; padding: 25px; }
             .modal-title { font-size: 1.5rem; width: 100%; border-bottom: 1px solid #FF7148; }
             .modal-header-tools { top: 15px; right: 15px; gap: 10px; }
+            
+            /* 手机端让按钮内容折行显示，避免太宽 */
+            .dk-btn-layout {
+                white-space: normal !important;
+                line-height: 1.3;
+                text-align: center;
+            }
         }
     </style>
 </head>
@@ -390,8 +398,11 @@
                 <div class="submission-buttons">
                     <a href="https://pitchplaylists.com/submit-public-page/689c2cdd6e16233e179d431b" target="_blank" class="submission-btn">PitchPlaylists</a>
                     <a href="https://dailyplaylists.com/playlists/527QMEuWQapUWAgxIjiQDN" target="_blank" class="submission-btn">Daily Playlists</a>
-                    <a href="https://distrokid.com/vip/seven/9768361" target="_blank" class="submission-btn dk-btn-layout">
+                    
+                    <a href="https://distrokid.com/vip/seven/你的后缀" target="_blank" class="submission-btn dk-btn-layout">
                         Distribute music with Distrokid <span class="save-tag">SAVE 7%</span>
+                    </a>
+
                     <button id="openModalBtn" class="submission-btn">Learn How This Playlist Works</button>
                 </div>
             </div>
@@ -402,12 +413,12 @@
                 <p>
                     <strong>关于我们 | About Us:</strong><br>
                     <p><strong>MusicTrackHunt</strong>  is currently just a personal project, born from our passion for discovering and sharing hidden musical gems. We believe good music should never be buried. Every song is personally listened to and carefully handpicked by us, with the hope of bringing you that next “favorite” surprise moment. I'm not a die-hard follower of any single genre, so I keep an open mind toward different styles and languages. I respect all original artists who create with care, and I believe that great songs in less-common languages deserve to be heard as well. What matters most to me is whether the lyrics and arrangement of a song can instantly capture my attention.</p>
-<br>
+                    <br>
 
-<p><strong>For artists:</strong> This playlist is an excellent platform to promote your music and reach listeners who are equally passionate about discovering great songs across different styles. You don’t need to spend too much time hesitating or worrying about whether your genre or language fits—what you should care about is the quality of your music. I also won’t dismiss AI-generated music outright, as I've tried out Suno before., and I know that creating a high-quality song with it still takes a great deal of time. If your music is made with Suno, please make sure you've fine-tuned it with care so it meets the basic standards of “good music.”</p>
-<br>
+                    <p><strong>For artists:</strong> This playlist is an excellent platform to promote your music and reach listeners who are equally passionate about discovering great songs across different styles. You don’t need to spend too much time hesitating or worrying about whether your genre or language fits—what you should care about is the quality of your music. I also won’t dismiss AI-generated music outright, as I've tried out Suno before., and I know that creating a high-quality song with it still takes a great deal of time. If your music is made with Suno, please make sure you've fine-tuned it with care so it meets the basic standards of “good music.”</p>
+                    <br>
 
-<p><strong>Please note: </strong> Our preferences and interpretation of a song are inevitably influenced by our personal, subjective feelings. Therefore, if your music is not selected by us, it does not mean we are denying its value. You are welcome to submit it to other playlists, and I believe you will find listeners who appreciate it.</p>
+                    <p><strong>Please note: </strong> Our preferences and interpretation of a song are inevitably influenced by our personal, subjective feelings. Therefore, if your music is not selected by us, it does not mean we are denying its value. You are welcome to submit it to other playlists, and I believe you will find listeners who appreciate it.</p>
                
                 </p>
                 <br>
